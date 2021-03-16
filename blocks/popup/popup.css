@@ -10,6 +10,6 @@
     background-color: rgba(0, 0, 0, .5);
 }
 .popup__opened {
-    display: block
+    display: block;
 }
 
