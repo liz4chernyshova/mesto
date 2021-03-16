@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Mesto</title>
+</head>
+<body class="body">
+    <div class="page">
+        <section class="popup">
+            <form class="popup__container">
+                <h2 class="form__heading">Редактировать профиль</h2>
+                <fieldset class="form__input-container">
+                    <input type="text" class="form__item form__item_el_heading" value="">
+                    <input type="text" class="form__item form__item_el_subheading" value="">
+                </fieldset>
+                <button class="form__save-btn" value="Сохранить">Сохранить</button>
+                <button class="form__close-btn" value=""><img class="form__close-btn_icon" alt="Крестик." src="images/close.svg"> </button>
+            </form>
+            <div class="popup__overlay"></div>
+        </section>
+        <header class="header">
+            <div class="header__logo"></div>
+            <div class="header__line"></div>
+        </header>
+        <main class="content">
+            <section class="profile">
+                <img class="profile__avatar" alt="" src="images/avatar.svg">
+                <div class="profile__info">
+                    <div class="profile__redactor">
+                        <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+                        <button class="profile__redactor-btn" value=""></button>
+                    </div>
+                    <p class="profile__info-description">Исследователь океана</p>
+                </div>
+                <button class="form__submit-btn" value=""></button>
+            </section>
+            <section class="photo-element">
+                <div class="photo-element__item">
+                    <img class="photo-element__picture" alt="" src="images/elements/Canada.jpg">
+                    <div class="photo-element__name">
+                        <h3 class="photo-element__name_title">Канада</h3>
+                        <div class="photo-element__name_icon"></div>
+                    </div>
+                </div>
+                <div class="photo-element__item">
+                    <img class="photo-element__picture" alt="" src="images/elements/Chicago.jpg">
+                    <div class="photo-element__name">
+                        <h3 class="photo-element__name_title">США<h3>
+                        <div class="photo-element__name_icon"></div>
+                    </div>
+                </div>
+                <div class="photo-element__item">
+                    <img class="photo-element__picture" alt="" src="images/elements/Greece.jpg">
+                    <div class="photo-element__name">
+                        <h3 class="photo-element__name_title">Греция</h3>
+                        <div class="photo-element__name_icon"></div>
+                    </div>
+                </div>
+                <div class="photo-element__item">
+                    <img class="photo-element__picture" alt="" src="images/elements/Norway.jpg">
+                    <div class="photo-element__name">
+                        <h3 class="photo-element__name_title">Норвегия</h3>
+                        <div class="photo-element__name_icon"></div>
+                    </div>
+                </div>
+                <div class="photo-element__item">
+                    <img class="photo-element__picture" alt="" src="images/elements/Tokio.jpg">
+                    <div class="photo-element__name">
+                        <h3 class="photo-element__name_title">Япония</h3>
+                        <div class="photo-element__name_icon"></div>
+                    </div>
+                </div>
+                <div class="photo-element__item">
+                    <img class="photo-element__picture" alt="" src="images/elements/Swizerland.jpg">
+                    <div class="photo-element__name">
+                        <h3 class="photo-element__name_title">Швейцария</h3>
+                        <div class="photo-element__name_icon"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright"> 2020 Mesto Russia</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

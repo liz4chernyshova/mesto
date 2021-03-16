@@ -1,0 +1,9 @@
+.form__input-container {
+    max-width: auto;
+    border: none;
+}
+@media all and (max-width: 425px) {
+    .form__input-container {
+        max-width: 282px;
+    }
+}s

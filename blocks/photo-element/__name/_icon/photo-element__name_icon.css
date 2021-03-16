@@ -1,0 +1,17 @@
+.photo-element__name_icon {
+    padding: 0;
+    width: 22px;
+    height: 19px;
+    margin-right: 30px;
+}
+.photo-element__name_icon::before {
+    content: url(../../../../images/heart.svg);
+    cursor: pointer;
+}
+.photo-element__name_icon:hover{
+    opacity: 0.5;
+    transition: 0.3s;
+}
+.photo-element__name_icon:active{
+    content: url(../../../../images/heart-active.svg);
+}

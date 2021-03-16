@@ -1,0 +1,16 @@
+.form__close-btn_icon {
+    transform: rotate(-45deg);
+    position: absolute;
+    top: -16%;
+    right: -15%;
+}
+.form__close-btn_icon:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+}
+@media all and (max-width: 600px) {
+    .form__close-btn_icon {
+        max-width: 26px;
+        top: -10%;
+    }
+}
