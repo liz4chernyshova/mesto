@@ -1,7 +1,7 @@
 let overPopup = document.querySelector('.popup');
 let openPopup = document.querySelector('.profile__redactor-btn');
 let formElement = overPopup.querySelector('.popup__container');
-let closePopup = document.querySelector('.form__close-btn');
+let closePopup = overPopup.querySelector('.form__close-btn');
 let userName = document.querySelector('.profile__info-name');
 let userDesc = document.querySelector('.profile__info-description');
 let nameInput = formElement.querySelector('.form__item_el_heading');
@@ -14,7 +14,6 @@ jobInput.setAttribute('value', uDesc);
 
 function showClick() {
    overPopup.classList.add('popup__opened');
-   formElement.classList.add('popup__opened');
 }
 function closeClick() {
    overPopup.classList.remove('popup__opened');
