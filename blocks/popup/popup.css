@@ -9,7 +9,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, .5);
 }
-.popup__opened {
+.popup_opened {
     display: block;
 }
 

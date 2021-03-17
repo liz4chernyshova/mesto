@@ -13,10 +13,10 @@ nameInput.setAttribute('value', uName);
 jobInput.setAttribute('value', uDesc);
 
 function showClick() {
-   overPopup.classList.add('popup__opened');
+   overPopup.classList.add('popup_opened');
 }
 function closeClick() {
-   overPopup.classList.remove('popup__opened');
+   overPopup.classList.remove('popup_opened');
 }
 function formSubmitHandler (evt) {
    evt.preventDefault();

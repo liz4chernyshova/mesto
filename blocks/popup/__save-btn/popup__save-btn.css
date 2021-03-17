@@ -21,6 +21,6 @@
     .popup__save-btn {
         max-width: 238px;
         height: 46px;
-        margin-left: 7px;
+        margin: 0 auto;
     }
 }
