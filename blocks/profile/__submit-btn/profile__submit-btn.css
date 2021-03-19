@@ -24,7 +24,6 @@
 }
 @media all and (max-width: 700px) {
     .profile__submit-btn {
-        position: static;
         width: 88%;
         margin: 36px auto 0;
     } 

@@ -4,26 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
-  <title>Mesto</title>
+  <title>Место</title>
 </head>
 <body class="body">
     <div class="page">
         <section class="popup">
-            <form class="popup__container">
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" class="popup__item popup__item-heading" value="">
-                <input type="text" class="popup__item popup__item-subheading" value="">
-                <button type="button" class="popup__save-btn" value="Сохранить">Сохранить</button>
-                <button type="button" class="popup__close-btn" value=""><img class="popup__icon" alt="Крестик." src="images/close.svg"> </button>
-            </form>
-        </section>
+            <div class="popup__container">
+              <button type="button" class="popup__close-btn"><img class="popup__icon" alt="Крестик." src="images/close.svg"></button>
+              <form name="popup" class="form">
+                <h2 class="form__title">Редактировать профиль</h2>
+                <input type="text" name="heading" class="form__item">
+                <input type="text" name="subheading" class="form__item">
+                <button type="submit" class="form__save-btn">Сохранить</button>
+              </form>
+            </div>
+          </section>
         <header class="header">
             <div class="header__logo"></div>
-            <div class="header__line"></div>
         </header>
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" alt="Аватарка." src="images/avatar.svg">
+                <img class="profile__avatar" alt="Аватарка." src="images/avatar.jpg">
                 <div class="profile__info">
                     <div class="profile__redactor">
                         <h1 class="profile__info-name">Жак-Ив Кусто</h1>
@@ -37,42 +38,42 @@
                 <div class="photo-element">
                     <img class="photo-element__picture" alt="Озеро Канады." src="images/elements/Canada.jpg">
                     <div class="photo-element__content">
-                        <h3 class="photo-element__title">Канада</h3>
+                        <h2 class="photo-element__title">Канада</h2>
                         <div class="photo-element__icon"></div>
                     </div>
                 </div>
                 <div class="photo-element">
                     <img class="photo-element__picture" alt="Чикаго." src="images/elements/Chicago.jpg">
                     <div class="photo-element__content">
-                        <h3 class="photo-element__title">США</h3>
+                        <h2 class="photo-element__title">США</h2>
                         <div class="photo-element__icon"></div>
                     </div>
                 </div>
                 <div class="photo-element">
                     <img class="photo-element__picture" alt="Грация." src="images/elements/Greece.jpg">
                     <div class="photo-element__content">
-                        <h3 class="photo-element__title">Греция</h3>
+                        <h2 class="photo-element__title">Греция</h2>
                         <div class="photo-element__icon"></div>
                     </div>
                 </div>
                 <div class="photo-element">
                     <img class="photo-element__picture" alt="Горы Норвегии." src="images/elements/Norway.jpg">
                     <div class="photo-element__content">
-                        <h3 class="photo-element__title">Норвегия</h3>
+                        <h2 class="photo-element__title">Норвегия</h2>
                         <div class="photo-element__icon"></div>
                     </div>
                 </div>
                 <div class="photo-element">
                     <img class="photo-element__picture" alt="Небоскребы Токио." src="images/elements/Tokio.jpg">
                     <div class="photo-element__content">
-                        <h3 class="photo-element__title">Япония</h3>
+                        <h2 class="photo-element__title">Япония</h2>
                         <div class="photo-element__icon"></div>
                     </div>
                 </div>
                 <div class="photo-element">
                     <img class="photo-element__picture" alt="Снежные горы Швейцарии." src="images/elements/Swizerland.jpg">
                     <div class="photo-element__content">
-                        <h3 class="photo-element__title">Швейцария</h3>
+                        <h2 class="photo-element__title">Швейцария</h2>
                         <div class="photo-element__icon"></div>
                     </div>
                 </div>
@@ -82,6 +83,6 @@
             <p class="footer__copyright"> 2020 Mesto Russia</p>
         </footer>
     </div>
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
