@@ -1,14 +1,14 @@
 .popup__icon {
-    transform: rotate(-45deg); 
+    transform: rotate(-45deg);
     object-fit: contain;
 }
 .popup__icon:hover { 
-    opacity: 0.6; 
-    transition: 0.3s; 
+    opacity: 0.6;
+    transition: 0.3s;
 } 
 @media all and (max-width: 600px) { 
     .popup__icon { 
-        max-width: 26px; 
-        top: -10%; 
+        max-width: 26px;
+        top: -10%;
     } 
 } 
