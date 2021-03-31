@@ -22,7 +22,7 @@ const photoElements = document.querySelector('.photo-elements');
 const initialCards = [
   {
     name: 'США',
-    link: 'https://raw.githubusercontent.com/liz4chernyshova/mesto/main/images/elements/Chicago.jpg'
+    link: 'https://raw.githubusercontent.com/liz4chernyshova/mesto/main/images/elements/New-York.jpg'
   },
   {
     name: 'Греция',
