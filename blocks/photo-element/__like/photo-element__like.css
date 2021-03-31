@@ -1,17 +1,14 @@
-.photo-element__icon {
+.photo-element__like {
     padding: 0;
     width: 22px;
     height: 19px;
     margin-right: 30px;
 }
-.photo-element__icon::before {
+.photo-element__like::before {
     content: url(../../../images/heart.svg);
     cursor: pointer;
 }
-.photo-element__icon:hover{
+.photo-element__like:hover{
     opacity: 0.5;
     transition: 0.3s;
-}
-.photo-element__icon:active{
-    content: url(../../../images/heart-active.svg);
 }

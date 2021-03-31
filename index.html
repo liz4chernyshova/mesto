@@ -35,53 +35,39 @@
                 <button type="button" class="profile__submit-btn" value=""></button>
             </section>
             <section class="photo-elements">
+              <template id="template-element">
                 <div class="photo-element">
-                    <img class="photo-element__picture" alt="Озеро Канады." src="images/elements/Canada.jpg">
+                    <img class="photo-element__picture" alt="#" src="#">
                     <div class="photo-element__content">
-                        <h2 class="photo-element__title">Канада</h2>
-                        <div class="photo-element__icon"></div>
+                        <h2 class="photo-element__title"></h2>
+                        <div class="photo-element__like"></div>
                     </div>
+                    <button type="button" class="photo-element__delete-btn" value=""></button>
                 </div>
-                <div class="photo-element">
-                    <img class="photo-element__picture" alt="Чикаго." src="images/elements/Chicago.jpg">
-                    <div class="photo-element__content">
-                        <h2 class="photo-element__title">США</h2>
-                        <div class="photo-element__icon"></div>
-                    </div>
-                </div>
-                <div class="photo-element">
-                    <img class="photo-element__picture" alt="Грация." src="images/elements/Greece.jpg">
-                    <div class="photo-element__content">
-                        <h2 class="photo-element__title">Греция</h2>
-                        <div class="photo-element__icon"></div>
-                    </div>
-                </div>
-                <div class="photo-element">
-                    <img class="photo-element__picture" alt="Горы Норвегии." src="images/elements/Norway.jpg">
-                    <div class="photo-element__content">
-                        <h2 class="photo-element__title">Норвегия</h2>
-                        <div class="photo-element__icon"></div>
-                    </div>
-                </div>
-                <div class="photo-element">
-                    <img class="photo-element__picture" alt="Небоскребы Токио." src="images/elements/Tokio.jpg">
-                    <div class="photo-element__content">
-                        <h2 class="photo-element__title">Япония</h2>
-                        <div class="photo-element__icon"></div>
-                    </div>
-                </div>
-                <div class="photo-element">
-                    <img class="photo-element__picture" alt="Снежные горы Швейцарии." src="images/elements/Swizerland.jpg">
-                    <div class="photo-element__content">
-                        <h2 class="photo-element__title">Швейцария</h2>
-                        <div class="photo-element__icon"></div>
-                    </div>
-                </div>
-            </section>
+          </template>
+        </section>
         </main>
         <footer class="footer">
             <p class="footer__copyright"> 2020 Mesto Russia</p>
         </footer>
+        <section class="popup-add">
+          <div class="popup-add__container">
+            <button type="button" class="popup-add__close-btn"><img class="popup__icon" alt="Крестик." src="images/close.svg"></button>
+            <form name="popup" class="form">
+              <h2 class="form__title">Новое место</h2>
+              <input type="text" placeholder="Название" name="name" class="form__item">
+              <input type="text" placeholder="Ссылка на картинку" name="link" class="form__item">
+              <button type="submit" class="form__save-btn">Сохранить</button>
+            </form>
+          </div>
+        </section>
+        <section class="popup popup-photo">
+          <div class="popup-photo__container">
+            <button type="button" class="popup-photo__button" value=""></button>
+            <img class="popup-photo__image" alt="#" src="#">
+            <h3 class="popup-photo__title"></h3>
+          </div>
+        </section>
     </div>
     <script src="scripts/script.js"></script>
 </body>

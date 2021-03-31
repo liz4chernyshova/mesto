@@ -1,0 +1,3 @@
+.photo-element__like_active{
+    content: url(../../../images/heart-active.svg);
+}
