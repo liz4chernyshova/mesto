@@ -8,17 +8,6 @@
 </head>
 <body class="body">
     <div class="page">
-        <section class="popup">
-            <div class="popup__container">
-              <button type="button" class="popup__close-btn"><img class="popup__icon" alt="Крестик." src="images/close.svg"></button>
-              <form name="popup" class="form">
-                <h2 class="form__title">Редактировать профиль</h2>
-                <input type="text" name="heading" class="form__item">
-                <input type="text" name="subheading" class="form__item">
-                <button type="submit" class="form__save-btn">Сохранить</button>
-              </form>
-            </div>
-          </section>
         <header class="header">
             <div class="header__logo"></div>
         </header>
@@ -34,29 +23,29 @@
                 </div>
                 <button type="button" class="profile__submit-btn" value=""></button>
             </section>
-            <section class="photo-elements">
-              <template id="template-element">
-                <div class="photo-element">
-                    <img class="photo-element__picture" alt="#" src="#">
-                    <div class="photo-element__content">
-                        <h2 class="photo-element__title"></h2>
-                        <div class="photo-element__like"></div>
-                    </div>
-                    <button type="button" class="photo-element__delete-btn" value=""></button>
-                </div>
-          </template>
-        </section>
+            <section class="photo-elements"></section>
         </main>
         <footer class="footer">
             <p class="footer__copyright"> 2020 Mesto Russia</p>
         </footer>
-        <section class="popup-add">
+        <section class="popup popup-redactor">
+          <div class="popup__container">
+            <button type="button" class="popup__close-btn"><img class="popup__icon" alt="Крестик." src="images/close.svg"></button>
+            <form name="popup" class="form">
+              <h2 class="form__title">Редактировать профиль</h2>
+              <input type="text" name="heading" class="form__item">
+              <input type="text" name="subheading" class="form__item">
+              <button type="submit" class="form__save-btn">Сохранить</button>
+            </form>
+          </div>
+        </section>
+        <section class="popup popup-add">
           <div class="popup-add__container">
             <button type="button" class="popup-add__close-btn"><img class="popup__icon" alt="Крестик." src="images/close.svg"></button>
-            <form name="popup" class="form">
+            <form name="popupAdd" class="form">
               <h2 class="form__title">Новое место</h2>
               <input type="text" placeholder="Название" name="name" class="form__item">
-              <input type="text" placeholder="Ссылка на картинку" name="link" class="form__item">
+              <input type="url" placeholder="Ссылка на картинку" name="link" class="form__item">
               <button type="submit" class="form__save-btn">Сохранить</button>
             </form>
           </div>
@@ -64,10 +53,20 @@
         <section class="popup popup-photo">
           <div class="popup-photo__container">
             <button type="button" class="popup-photo__button" value=""></button>
-            <img class="popup-photo__image" alt="#" src="#">
+            <img alt="#" src="#" class="popup-photo__image">
             <h3 class="popup-photo__title"></h3>
           </div>
         </section>
+        <template id="template-element">
+          <div class="photo-element">
+              <img class="photo-element__picture" alt="#" src="#">
+              <div class="photo-element__content">
+                  <h2 class="photo-element__title"></h2>
+                  <button type="button" class="photo-element__like" value=""></button>
+              </div>
+              <button type="button" class="photo-element__delete-btn" value=""></button>
+          </div>
+    </template>
     </div>
     <script src="scripts/script.js"></script>
 </body>
