@@ -45,27 +45,30 @@ const initialCards = [
   }
 ];
 
-btnRedactor.addEventListener('click', () => showClick(popup));
-closePopup.addEventListener('click',() => closeClick(popup));
+btnRedactor.addEventListener('click', () => editPopupOpen(popup));
+closePopup.addEventListener('click',() => popupClose(popup));
 formElement.addEventListener('submit', formSubmitHandler);
 formAdd.addEventListener('submit', addElementCard);
-btnAdd.addEventListener('click', () => showClick(popupAdd));
-btnAddClose.addEventListener('click', () => closeClick(popupAdd));
-btnPhoto.addEventListener('click', () => closeClick(popupPhoto));
+btnAdd.addEventListener('click', () =>  openPopup(popupAdd));
+btnAddClose.addEventListener('click', () => popupClose(popupAdd));
+btnPhoto.addEventListener('click', () => popupClose(popupPhoto));
 
-function showClick(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
+}
+function popupClose(popup) {
+  popup.classList.remove('popup_opened');
+}
+function editPopupOpen(popup) {
   nameInput.value = userName.textContent;
   jobInput.value = userDesc.textContent;
-}
-function closeClick(popup) {
-  popup.classList.remove('popup_opened');
+  openPopup(popup);
 }
 function formSubmitHandler(evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userDesc.textContent = jobInput.value;
-  closeClick();
+  popupClose(popup);
 }
 
 function addElement(card) {
@@ -108,7 +111,7 @@ function addElementCard(evt) {
   evt.preventDefault();
   const elementCard = addElement({name: nameCard.value, link: linkCard.value});
   photoElements.prepend(elementCard);
-  closeAdd(popupAdd);
+  popupClose(popupAdd);
   formAdd.reset();
 }
 
@@ -116,5 +119,5 @@ function openCard(link, alt) {
   photoImage.src = link;
   photoImage.alt = alt;
   photoTitle.textContent = alt;
-  showClick(popupPhoto);
+  openPopup(popupPhoto);
 }
