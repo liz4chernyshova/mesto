@@ -1,4 +1,5 @@
-.form__item { 
+.form__input { 
+    outline: none;
     width: 358px;
     height: 27px;
     border: none;
@@ -10,7 +11,7 @@
     line-height: 1.2;
 }
 @media all and (max-width: 600px) { 
-    .form__item { 
+    .form__input { 
         width: 238px;
         margin: 0 22px 30px;
     } 

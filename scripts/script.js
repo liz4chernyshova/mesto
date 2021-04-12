@@ -2,10 +2,10 @@ const popup = document.querySelector('.popup');
 const popupAdd = document.querySelector('.popup-add');
 const popupPhoto = document.querySelector('.popup-photo');
 const photoImage = popupPhoto.querySelector('.popup-photo__image');
-const formAdd = popupAdd.querySelector('.form');
+const popupAddElement = popupAdd.querySelector('.form');
 const btnPhoto = popupPhoto.querySelector('.popup-photo__button');
 const photoTitle = popupPhoto.querySelector('.popup-photo__title');
-const formElement = popup.querySelector('.popup__container');
+const popupElement = popup.querySelector('.popup__container');
 const btnRedactor = document.querySelector('.profile__redactor-btn');
 const closePopup = popup.querySelector('.popup__close-btn');
 const nameInput = popup.querySelector('input[name="heading"]');
@@ -17,6 +17,8 @@ const userDesc = document.querySelector('.profile__info-description');
 const btnAdd = document.querySelector('.profile__submit-btn');
 const btnAddClose = popupAdd.querySelector('.popup-add__close-btn');
 const photoElements = document.querySelector('.photo-elements');
+const formElement = document.querySelector('.form');
+const formInput = formElement.querySelector('.form__input');
 
 const initialCards = [
   {
@@ -47,17 +49,30 @@ const initialCards = [
 
 btnRedactor.addEventListener('click', () => editPopupOpen(popup));
 closePopup.addEventListener('click',() => popupClose(popup));
-formElement.addEventListener('submit', formSubmitHandler);
-formAdd.addEventListener('submit', addElementCard);
+popupElement.addEventListener('submit', formSubmitHandler);
+popupAddElement.addEventListener('submit', addElementCard);
 btnAdd.addEventListener('click', () =>  openPopup(popupAdd));
 btnAddClose.addEventListener('click', () => popupClose(popupAdd));
 btnPhoto.addEventListener('click', () => popupClose(popupPhoto));
+document.addEventListener('click', popupCloseClick);
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', (evt) => {
+    if(evt.key === 'Escape') {
+      popupClose(popup);
+    }
+  });
+}
+function popupCloseClick(evt) {
+  if(evt.target.classList.contains('popup')) {
+    const modal = document.querySelector('.popup_opened');
+    popupClose(modal);
+  }
 }
 function popupClose(popup) {
   popup.classList.remove('popup_opened');
+  popupAddElement.reset();
 }
 function editPopupOpen(popup) {
   nameInput.value = userName.textContent;
@@ -112,7 +127,7 @@ function addElementCard(evt) {
   const elementCard = addElement({name: nameCard.value, link: linkCard.value});
   photoElements.prepend(elementCard);
   popupClose(popupAdd);
-  formAdd.reset();
+  popupAddElement.reset();
 }
 
 function openCard(link, alt) {

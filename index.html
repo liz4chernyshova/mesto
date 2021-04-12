@@ -31,10 +31,12 @@
         <section class="popup popup-redactor">
           <div class="popup__container">
             <button type="button" class="popup__close-btn"><img class="popup__icon" alt="Крестик." src="images/close.svg"></button>
-            <form name="popup" class="form">
+            <form name="popup" class="form" novalidate>
               <h2 class="form__title">Редактировать профиль</h2>
-              <input type="text" name="heading" class="form__item">
-              <input type="text" name="subheading" class="form__item">
+              <input id="heading-input" type="text" name="heading" class="form__input" minlength="2" maxlength="40" required>
+              <span class="heading-input-error form__input-error"></span>
+              <input id="subheading-input" type="text" name="subheading" class="form__input" minlength="2" maxlength="200" required>
+              <span class="subheading-input-error form__input-error"></span>
               <button type="submit" class="form__save-btn">Сохранить</button>
             </form>
           </div>
@@ -42,10 +44,12 @@
         <section class="popup popup-add">
           <div class="popup-add__container">
             <button type="button" class="popup-add__close-btn"><img class="popup__icon" alt="Крестик." src="images/close.svg"></button>
-            <form name="popupAdd" class="form">
+            <form name="popupAdd" class="form" novalidate>
               <h2 class="form__title">Новое место</h2>
-              <input type="text" placeholder="Название" name="name" class="form__item">
-              <input type="url" placeholder="Ссылка на картинку" name="link" class="form__item">
+              <input id="name-input" type="text" placeholder="Название" name="name" class="form__input" minlength="2" maxlength="30" required>
+              <span class="name-input-error form__input-error"></span>
+              <input id="link-input" type="url" placeholder="Ссылка на картинку" name="link" class="form__input" required>
+              <span class="link-input-error form__input-error"></span>
               <button type="submit" class="form__save-btn">Сохранить</button>
             </form>
           </div>
@@ -69,5 +73,6 @@
     </template>
     </div>
     <script src="scripts/script.js"></script>
+    <script src="scripts/validate.js"></script>
 </body>
 </html>
