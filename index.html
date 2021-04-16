@@ -33,9 +33,9 @@
             <button type="button" class="popup__close-btn"><img class="popup__icon" alt="Крестик." src="images/close.svg"></button>
             <form name="popup" class="form" novalidate>
               <h2 class="form__title">Редактировать профиль</h2>
-              <input id="heading-input" type="text" name="heading" class="form__input" minlength="2" maxlength="40" required>
+              <input id="heading-input" type="text" name="heading" placeholder="Имя" class="form__input" minlength="2" maxlength="40" required>
               <span class="heading-input-error form__input-error"></span>
-              <input id="subheading-input" type="text" name="subheading" class="form__input" minlength="2" maxlength="200" required>
+              <input id="subheading-input" type="text" name="subheading" placeholder="Вид деятельности" class="form__input" minlength="2" maxlength="200" required>
               <span class="subheading-input-error form__input-error"></span>
               <button type="submit" class="form__save-btn">Сохранить</button>
             </form>
@@ -50,7 +50,7 @@
               <span class="name-input-error form__input-error"></span>
               <input id="link-input" type="url" placeholder="Ссылка на картинку" name="link" class="form__input" required>
               <span class="link-input-error form__input-error"></span>
-              <button type="submit" class="form__save-btn">Сохранить</button>
+              <button type="submit" class="form__save-btn" disabled>Сохранить</button>
             </form>
           </div>
         </section>
@@ -72,7 +72,8 @@
           </div>
     </template>
     </div>
-    <script src="scripts/script.js"></script>
+    <script src="scripts/initial-cards.js"></script>
     <script src="scripts/validate.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>

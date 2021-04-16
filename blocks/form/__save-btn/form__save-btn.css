@@ -16,7 +16,13 @@
 } 
 .form__save-btn:hover { 
     opacity: 0.8;
-} 
+}
+.form__save-btn:disabled {
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    color: #C4C4C4;
+}
 @media all and (max-width: 600px) { 
     .form__save-btn { 
         max-width: 238px;

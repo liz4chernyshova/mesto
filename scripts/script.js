@@ -7,7 +7,7 @@ const btnPhoto = popupPhoto.querySelector('.popup-photo__button');
 const photoTitle = popupPhoto.querySelector('.popup-photo__title');
 const popupElement = popup.querySelector('.popup__container');
 const btnRedactor = document.querySelector('.profile__redactor-btn');
-const closePopup = popup.querySelector('.popup__close-btn');
+const popupClose = popup.querySelector('.popup__close-btn');
 const nameInput = popup.querySelector('input[name="heading"]');
 const jobInput = popup.querySelector('input[name="subheading"]');
 const nameCard = popupAdd.querySelector('input[name="name"]');
@@ -17,76 +17,55 @@ const userDesc = document.querySelector('.profile__info-description');
 const btnAdd = document.querySelector('.profile__submit-btn');
 const btnAddClose = popupAdd.querySelector('.popup-add__close-btn');
 const photoElements = document.querySelector('.photo-elements');
-const formElement = document.querySelector('.form');
-const formInput = formElement.querySelector('.form__input');
 
-const initialCards = [
-  {
-    name: 'США',
-    link: 'https://raw.githubusercontent.com/liz4chernyshova/mesto/main/images/elements/New-York.jpg'
-  },
-  {
-    name: 'Греция',
-    link: 'https://raw.githubusercontent.com/liz4chernyshova/mesto/main/images/elements/Greece.jpg'
-  },
-  {
-    name: 'Канада',
-    link: 'https://raw.githubusercontent.com/liz4chernyshova/mesto/main/images/elements/Canada.jpg'
-  },
-  {
-    name: 'Норвегия',
-    link: 'https://raw.githubusercontent.com/liz4chernyshova/mesto/main/images/elements/Norway.jpg'
-  },
-  {
-    name: 'Япония',
-    link: 'https://raw.githubusercontent.com/liz4chernyshova/mesto/main/images/elements/Tokio.jpg'
-  },
-  {
-    name: 'Швейцария',
-    link: 'https://raw.githubusercontent.com/liz4chernyshova/mesto/main/images/elements/Swizerland.jpg'
-  }
-];
-
-btnRedactor.addEventListener('click', () => editPopupOpen(popup));
-closePopup.addEventListener('click',() => popupClose(popup));
-popupElement.addEventListener('submit', formSubmitHandler);
-popupAddElement.addEventListener('submit', addElementCard);
+btnRedactor.addEventListener('click', () => closeEditProfilePopup(popup));
+popupClose.addEventListener('click',() => closePopup(popup));
+popupElement.addEventListener('submit', submitEditProfileForm);
+popupAddElement.addEventListener('submit', submitAddCardForm);
 btnAdd.addEventListener('click', () =>  openPopup(popupAdd));
-btnAddClose.addEventListener('click', () => popupClose(popupAdd));
-btnPhoto.addEventListener('click', () => popupClose(popupPhoto));
+btnAddClose.addEventListener('click', () => closePopup(popupAdd));
+btnPhoto.addEventListener('click', () => closePopup(popupPhoto));
 document.addEventListener('click', popupCloseClick);
+document.addEventListener('keydown', keydownEscape);
+
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => {
-    if(evt.key === 'Escape') {
-      popupClose(popup);
-    }
-  });
+  popupAddElement.reset();
+  deleteErrorMessage();
 }
+
 function popupCloseClick(evt) {
   if(evt.target.classList.contains('popup')) {
     const modal = document.querySelector('.popup_opened');
-    popupClose(modal);
+    closePopup(modal);
   }
 }
-function popupClose(popup) {
-  popup.classList.remove('popup_opened');
-  popupAddElement.reset();
+
+function keydownEscape(evt) {
+  if(evt.key === 'Escape') {
+    const modalPopup = document.querySelector('.popup_opened');
+    closePopup(modalPopup);
+  }
 }
-function editPopupOpen(popup) {
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+function closeEditProfilePopup(popup) {
   nameInput.value = userName.textContent;
   jobInput.value = userDesc.textContent;
   openPopup(popup);
 }
-function formSubmitHandler(evt) {
+function submitEditProfileForm(evt) {
   evt.preventDefault();
   userName.textContent = nameInput.value;
   userDesc.textContent = jobInput.value;
-  popupClose(popup);
+  closePopup(popup);
 }
 
-function addElement(card) {
+function createCard(card) {
   const templateElements = document.querySelector('#template-element').content;
   const newElement = templateElements.querySelector('.photo-element').cloneNode(true);
   const elementPicture = newElement.querySelector('.photo-element__picture');
@@ -111,22 +90,22 @@ function deleteElement(evt) {
   evt.target.closest('.photo-element').remove();
 }
  
- function createCard() {
+ function renderInitialCards() {
    const inCards = initialCards.map(card => {
-     const newElement = addElement(card);
+     const newElement = createCard(card);
      return newElement;
    });
    photoElements.prepend(...inCards);
  }
 
-createCard();
+ renderInitialCards();
 
 
-function addElementCard(evt) {
+function submitAddCardForm(evt) {
   evt.preventDefault();
-  const elementCard = addElement({name: nameCard.value, link: linkCard.value});
+  const elementCard = createCard({name: nameCard.value, link: linkCard.value});
   photoElements.prepend(elementCard);
-  popupClose(popupAdd);
+  closePopup(popupAdd);
   popupAddElement.reset();
 }
 
