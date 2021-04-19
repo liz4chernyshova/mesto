@@ -28,7 +28,6 @@ btnPhoto.addEventListener('click', () => closePopup(popupPhoto));
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  deleteErrorMessage();
   document.addEventListener('keydown', keydownEscape);
   document.addEventListener('click', popupCloseClick);
 }
@@ -37,13 +36,12 @@ function popupCloseClick(evt) {
   if(evt.target.classList.contains('popup')) {
     const modal = document.querySelector('.popup_opened');
     closePopup(modal);
-    document.removeEventListener('keydown', keydownEscape);
-    document.addEventListener('click', popupCloseClick);
   }
 }
 
 function  handlePopupAdd() {
   popupAddElement.reset();
+  deleteErrorMessage();
   openPopup(popupAdd);
 }
 
@@ -56,6 +54,8 @@ function keydownEscape(evt) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', keydownEscape);
+  document.removeEventListener('click', popupCloseClick);
 }
 
 function closeEditProfilePopup(popup) {
