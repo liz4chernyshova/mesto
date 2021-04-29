@@ -4,10 +4,16 @@ export class Card {
         this._link = item.link,
         this._name = item.name,
         this._openCard = openCard,
-        this._elementDelete = document.querySelector('.photo-element__delete-btn');
-        this._elementLike = document.querySelector('.photo-element__like');
-        this._elementPicture = document.querySelector('.photo-element__picture');
-        this._elementTitle = document.querySelector('.photo-element__title');
+        this._elementDelete = ('.photo-element__delete-btn');
+        this._elementLike = ('.photo-element__like');
+        this._elementPicture = ('.photo-element__picture');
+        this._elementTitle = ('.photo-element__title');
+    }
+
+    _setEventListeners() {
+        this._element.querySelector(this._elementLike).addEventListener('click', () => this._likeElement());
+        this._element.querySelector(this._elementDelete).addEventListener('click', () => this._deleteElement());
+        this._element.querySelector(this._elementPicture).addEventListener('click', () => this._openCard(this._link, this._name));
     }
 
     _getTemplate() {
@@ -16,17 +22,11 @@ export class Card {
     }
 
     _likeElement() {
-       this._element.classList.toggle('photo-element__like_active');
+       this._element.querySelector(this._elementLike).classList.toggle('photo-element__like_active');
     }
 
     _deleteElement() {
         this._element.closest('.photo-element').remove();
-    }
-
-    _setEventListeners() {
-        this._element.querySelector(this._elementLike).addEventListener('click', this._likeElement());
-        this._element.querySelector(this._elementDelete).addEventListener('click', this._deleteElement());
-        this._element.querySelector(this._elementPicture).addEventListener('click', () => openCard(this._link, this._name));
     }
 
     generateCard() {

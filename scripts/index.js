@@ -1,8 +1,11 @@
 import {Card} from './Card.js';
 import {initialCards} from './initial-cards.js';
+import {FormValidator} from './FormValidator.js';
+import {validationConfig} from './FormValidator.js';
 
 const popup = document.querySelector('.popup');
 const popupAdd = document.querySelector('.popup-add');
+const popupRedactor = document.querySelector('.popup-redactor');
 const popupPhoto = document.querySelector('.popup-photo');
 const photoImage = popupPhoto.querySelector('.popup-photo__image');
 const popupAddElement = popupAdd.querySelector('.form');
@@ -21,7 +24,7 @@ const btnAdd = document.querySelector('.profile__submit-btn');
 const btnAddClose = popupAdd.querySelector('.popup-add__close-btn');
 const photoElements = document.querySelector('.photo-elements');
 
-/*btnRedactor.addEventListener('click', () => closeEditProfilePopup(popup));
+btnRedactor.addEventListener('click', () => closeEditProfilePopup(popup));
 popupClose.addEventListener('click',() => closePopup(popup));
 popupElement.addEventListener('submit', submitEditProfileForm);
 popupAddElement.addEventListener('submit', submitAddCardForm);
@@ -33,6 +36,7 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', keydownEscape);
   document.addEventListener('click', popupCloseClick);
+  new FormValidator(validationConfig, popupRedactor).enableValidation();
 }
 
 function popupCloseClick(evt) {
@@ -44,7 +48,6 @@ function popupCloseClick(evt) {
 
 function  handlePopupAdd() {
   popupAddElement.reset();
-  deleteErrorMessage();
   openPopup(popupAdd);
 }
 
@@ -72,23 +75,15 @@ function submitEditProfileForm(evt) {
   userName.textContent = nameInput.value;
   userDesc.textContent = jobInput.value;
   closePopup(popup);
-}*/
+}
 
 function createCard(item) {
   const element = new Card(item, openCard, '#template-element');
   const card = element.generateCard();
   return card;
  }
-
- /*function likeElement(evt) {
-  evt.target.classList.toggle('photo-element__like_active');
-}
-
-function deleteElement(evt) {
-  evt.target.closest('.photo-element').remove();
-}*/
  
- function renderInitialCards() { //создает карточки из initial-card, на класс Card не влияет
+function renderInitialCards() { //создает карточки из initial-card, на класс Card не влияет
    const cards = initialCards.map(card => {
      const newElement = createCard(card);
      return newElement;
@@ -99,13 +94,13 @@ function deleteElement(evt) {
  renderInitialCards();
 
 
-/*function submitAddCardForm(evt) {
+function submitAddCardForm(evt) {
   evt.preventDefault();
   const elementCard = createCard({name: nameCard.value, link: linkCard.value});
   photoElements.prepend(elementCard);
   closePopup(popupAdd);
   popupAddElement.reset();
-}*/
+}
 
 function openCard(link, alt) {
   photoImage.src = link;
