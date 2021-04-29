@@ -1,3 +1,5 @@
+export {initialCards};
+
 const initialCards = [
     {
       name: 'США',
@@ -23,4 +25,4 @@ const initialCards = [
       name: 'Швейцария',
       link: 'https://raw.githubusercontent.com/liz4chernyshova/mesto/main/images/elements/Swizerland.jpg'
     }
-  ];
+]
