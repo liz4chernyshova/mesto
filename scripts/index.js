@@ -24,6 +24,7 @@ const btnAdd = document.querySelector('.profile__submit-btn');
 const btnAddClose = popupAdd.querySelector('.popup-add__close-btn');
 const photoElements = document.querySelector('.photo-elements');
 
+
 btnRedactor.addEventListener('click', () => closeEditProfilePopup(popup));
 popupClose.addEventListener('click',() => closePopup(popup));
 popupElement.addEventListener('submit', submitEditProfileForm);
@@ -32,11 +33,17 @@ btnAdd.addEventListener('click', () =>  handlePopupAdd(popupAdd));
 btnAddClose.addEventListener('click', () => closePopup(popupAdd));
 btnPhoto.addEventListener('click', () => closePopup(popupPhoto));
 
+const popupRedactorValidate = new FormValidator(validationConfig, popupRedactor);
+const popupAddValidate = new FormValidator(validationConfig, popupAdd);
+
+
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', keydownEscape);
   document.addEventListener('click', popupCloseClick);
   new FormValidator(validationConfig, popupRedactor).enableValidation();
+  new FormValidator(validationConfig, popupAdd).enableValidation();
 }
 
 function popupCloseClick(evt) {
@@ -62,7 +69,10 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', keydownEscape);
   document.removeEventListener('click', popupCloseClick);
+  popupRedactorValidate.deleteErrorMessage();
+  popupAddValidate.deleteErrorMessage();
 }
+
 
 function closeEditProfilePopup(popup) {
   nameInput.value = userName.textContent;
@@ -83,7 +93,7 @@ function createCard(item) {
   return card;
  }
  
-function renderInitialCards() { //создает карточки из initial-card, на класс Card не влияет
+function renderInitialCards() {
    const cards = initialCards.map(card => {
      const newElement = createCard(card);
      return newElement;
