@@ -1,4 +1,5 @@
 .photo-element__title {
+    max-width: 210px;
     margin-left: 21px;
     font-style: normal;
     font-weight: 900;
