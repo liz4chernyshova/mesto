@@ -27,6 +27,7 @@ export class Card {
 
     _deleteElement() {
         this._element.closest('.photo-element').remove();
+        this._element = null;
     }
 
     generateCard() {
