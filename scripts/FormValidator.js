@@ -24,11 +24,11 @@ export class FormValidator {
   }
 
   _setEventListeners() {
-    this._toggleButtonState(this._inputList, this._buttonElement);
+    this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
       this._isValid(inputElement)
-      this._toggleButtonState(this._inputList, this._buttonElement);
+      this._toggleButtonState();
       });
     });
 
@@ -65,7 +65,7 @@ export class FormValidator {
         const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
         errorElement.textContent = '';
     });
-    this._toggleButtonState(this._inputList, this._buttonElement); 
+    this._toggleButtonState(); 
     }
 
   _isValid (inputElement) {
