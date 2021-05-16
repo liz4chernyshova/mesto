@@ -12,6 +12,7 @@ import {popupConfig} from '../components/constants.js';
 
 const popupRedactorValidate = new FormValidator(validationConfig, popupConfig.popupRedactor);
 const popupAddValidate = new FormValidator(validationConfig, popupConfig.popupAdd);
+popupAddValidate.enableValidation();
 const popupImage = new PopupWithImage(popupConfig.popupPhoto);
 
 const createCard = (item) => {
@@ -28,9 +29,9 @@ const cards = new Section ({
 cards.renderItems();
 
 
-const popupAddCard = new PopupWithForm({
-  popupSelector: popupConfig.popupAdd,
-  handleFormSubmit: (data) => {
+const popupAddCard = new PopupWithForm(
+  popupConfig.popupAdd, {
+    handleFormSubmit: (data) => {
       cards.addItem(
           createCard({
               alt: data['text'],
@@ -43,15 +44,15 @@ const popupAddCard = new PopupWithForm({
 
 popupConfig.btnAdd.addEventListener("click", () => {
   popupAddCard.open();
-  popupAddValidate.removeValidationErrors();
+  popupAddValidate.deleteErrorMessage();
 });
 
-const popupEditProfile = new PopupWithForm({
-  popupSelector: popupConfig.popupRedactor,
-  handleFormSubmit: (data) => {
+const popupEditProfile = new PopupWithForm(
+  popupConfig.popupRedactor, {
+    handleFormSubmit: (data) => {
       userInfo.setUserInfo({
-          userNameValue: data['title'],
-          userDescriptionValue: data['subtitle'],
+          userName: data['title'],
+          userDescription: data['subtitle'],
       });
       popupEditProfile.close();
   },
@@ -66,10 +67,12 @@ const getInfo = () => {
   const profileInfo = userInfo.getUserInfo();
   popupConfig.nameInput.value = profileInfo.name;
   popupConfig.jobInput.value = profileInfo.description;
-  popupRedactorValidate.enableValidation();
+  popupRedactorValidate.deleteErrorMessage();
   popupEditProfile.open();
 };
-popupConfig.btnRedactor.addEventListener("click", getInfo);
+
+
+popupConfig.btnRedactor.addEventListener('click', getInfo);
 
 
 popupEditProfile.setEventListeners();
