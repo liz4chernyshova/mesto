@@ -1,4 +1,4 @@
-import {popupConfig} from './constants.js';
+import {popupConfig} from '../utils/constants.js';
 
 export default class Popup {
     constructor(popupSelector) {
@@ -22,6 +22,11 @@ export default class Popup {
     }
 
     setEventListeners() {
-        this._popup.querySelector(popupConfig.buttonClose).addEventListener('click', () => { this.close();})
+        this._popup.addEventListener('click', (evt) => {
+			if (evt.target.classList.contains('popup_opened')) {
+				this.close()
+			}
+		})
+        this._popup.querySelector(popupConfig.buttonClose).addEventListener('click', () => { this.close();})   
     }
 }

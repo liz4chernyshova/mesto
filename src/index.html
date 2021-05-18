@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="../src/pages/index.css">// НЕ ЗАБЫТЬ УДАЛИТЬ!!
   <title>Место</title>
 </head>
 <body class="body">
@@ -13,7 +12,7 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" alt="Аватарка." src="../src/images/avatar.jpg">
+                <img class="profile__avatar" alt="Аватарка." src="<%=require('./images/avatar.jpg')%>">
                 <div class="profile__info">
                     <div class="profile__redactor">
                         <h1 class="profile__info-name">Жак-Ив Кусто</h1>
@@ -30,7 +29,7 @@
         </footer>
         <section class="popup popup-redactor">
           <div class="popup__container">
-            <button type="button" class="popup__close-btn"><img class="popup__icon" alt="Крестик." src="../src/images/close.svg"></button>
+            <button type="button" class="popup__close-btn"><img class="popup__icon" alt="Крестик." src="<%=require('./images/close.svg')%>"></button>
             <form name="popup" class="form" novalidate>
               <h2 class="form__title">Редактировать профиль</h2>
               <input id="heading-input" type="text" name="heading" placeholder="Имя" class="form__input" minlength="2" maxlength="40" required>
@@ -43,7 +42,7 @@
         </section>
         <section class="popup popup-add">
           <div class="popup-add__container">
-            <button type="button" class="popup__close-btn"><img class="popup__icon" alt="Крестик." src="../src/images/close.svg"></button>
+            <button type="button" class="popup__close-btn"><img class="popup__icon" alt="Крестик." src="<%=require('./images/close.svg')%>"></button>
             <form name="popupAdd" class="form" novalidate>
               <h2 class="form__title">Новое место</h2>
               <input id="name-input" type="text" placeholder="Название" name="name" class="form__input" minlength="2" maxlength="30" required>
@@ -56,7 +55,7 @@
         </section>
         <section class="popup popup-photo">
           <div class="popup-photo__container">
-            <button type="button" class="popup__close-btn" value=""><img class="popup__icon" alt="Крестик." src="../src/images/close.svg"></button>
+            <button type="button" class="popup__close-btn" value=""><img class="popup__icon" alt="Крестик." src="<%=require('./images/close.svg')%>"></button>
             <img alt="#" src="#" class="popup-photo__image">
             <h3 class="popup-photo__title"></h3>
           </div>
@@ -72,6 +71,5 @@
           </div>
     </template>
     </div>
-    <script src="../src/pages/index.js" type="module"></script>// НЕ ЗАБЫТЬ УДАЛИТЬ!
 </body>
 </html>
