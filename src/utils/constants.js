@@ -1,4 +1,13 @@
-export {popupConfig};
+export { validationConfig, popupConfig };
+
+const validationConfig = {
+    formSelector: '.form',
+    formInput: '.form__input',
+    buttonElement: '.form__save-btn',
+    buttonElementInactive: 'form__save-btn_inactive',
+    inputError: 'form__input_type_error',
+    inputErrorActive: 'form__input-error_active'
+}
 
 const popupConfig = {
     popup:  document.querySelectorAll('.popup'),
@@ -9,8 +18,8 @@ const popupConfig = {
     btnRedactor: document.querySelector('.profile__redactor-btn'),
     nameInput: popup.querySelector('input[name="heading"]'),
     jobInput: popup.querySelector('input[name="subheading"]'),
-    userName: document.querySelector('.profile__info-name'),
-    userDesc: document.querySelector('.profile__info-description'),
+    userName: '.profile__info-name',
+    userDesc: '.profile__info-description',
     btnAdd: document.querySelector('.profile__submit-btn'),
     photoElements: '.photo-elements'
 }

@@ -2,12 +2,12 @@ import './index.css';
 import {Card} from '../components/Card.js';
 import {initialCards} from '../utils/initial-cards.js';
 import {FormValidator} from '../components/FormValidator.js';
-import {validationConfig} from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import {popupConfig} from '../utils/constants.js';
+import {validationConfig} from '../utils/constants.js';
 
 
 const popupRedactorValidate = new FormValidator(validationConfig, popupConfig.popupRedactor);

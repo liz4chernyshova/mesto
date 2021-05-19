@@ -4,10 +4,10 @@ export class Card {
         this._link = item.link,
         this._name = item.name,
         this._openCard = openCard,
-        this._elementDelete = ('.photo-element__delete-btn');
-        this._elementLike = ('.photo-element__like');
-        this._elementPicture = ('.photo-element__picture');
-        this._elementTitle = ('.photo-element__title');
+        this._elementDelete = '.photo-element__delete-btn';
+        this._elementLike = '.photo-element__like';
+        this._elementPicture = '.photo-element__picture';
+        this._elementTitle = '.photo-element__title';
     }
 
     _setEventListeners() {
