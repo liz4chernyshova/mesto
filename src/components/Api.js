@@ -1,7 +1,7 @@
 export class Api {
-    constructor(options) {
-      this._address = options.address;
-      this._headers = options.headers;
+    constructor({address, headers}) {
+      this._address = address;
+      this._headers = headers;
     }
   
     getUserInfo() {
@@ -100,7 +100,20 @@ export class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(`Ошибка: ${res.status}. Аватар не обновлен`);
+                return Promise.reject(`Ошибка: аватан не обновлен ${res.status}`);
+            })
+    }
+
+    removeCard(id) {
+        return fetch(`${this._url}/cards/${id}`, {
+            method: 'DELETE',
+            headers: this._headers
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(`Ошибка: карточка не удалена ${res.status}`);
             })
     }
   

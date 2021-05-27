@@ -15,8 +15,8 @@ const popupConfig = {
     popupAdd: '.popup-add',
     popupRedactor: '.popup-redactor',
     popupPhoto: '.popup-photo',
-    popupAvatar: 'popup-avatar',
-    popupDelete: 'popup-delete',
+    popupAvatar: '.popup-avatar',
+    popupDelete: '.popup-delete',
     btnRedactor: document.querySelector('.profile__redactor-btn'),
     openAvatar: document.querySelector('.profile__avatar-container'),
     nameInput: popup.querySelector('input[name="heading"]'),
@@ -25,5 +25,5 @@ const popupConfig = {
     userDesc: '.profile__info-description',
     btnAdd: document.querySelector('.profile__submit-btn'),
     photoElements: '.photo-elements',
-    btnDelete: 'photo-element__delete-btn'
+    btnDelete: '.photo-element__delete-btn'
 }

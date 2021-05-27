@@ -19,8 +19,7 @@ _setEventListeners() {
     this._isValid(inputElement) 
     this._toggleButtonState(); 
     }); 
-  }); 
-
+  });
 }; 
 
 _toggleButtonState () { 
@@ -48,4 +47,29 @@ _hideError (inputElement) {
   errorElement.classList.remove(this._validationConfig.inputErrorActive); 
 };
 
+  deleteErrorMessage() { 
+    this._inputList.forEach((inputElement) => { 
+        this._hideError(inputElement); 
+        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`); 
+        errorElement.textContent = ''; 
+    }); 
+    this._toggleButtonState();  
+  } 
+  
+
+  _isValid (inputElement) { 
+    if (!inputElement.validity.valid) { 
+      this._showError(inputElement, inputElement.validationMessage ); 
+    } else { 
+      this._hideError(inputElement); 
+    } 
+  }; 
+  
+  
+  enableValidation () { 
+    this._formElement.addEventListener('submit', (evt) => { 
+      evt.preventDefault(); 
+    }); 
+    this._setEventListeners(); 
+  } 
 }

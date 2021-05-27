@@ -1,11 +1,11 @@
 import './index.css';
 import {Card} from '../components/Card.js';
-import {initialCards} from '../utils/initial-cards.js';
 import {FormValidator} from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
+import PopupDeleteCard from '../components/popupDeleteCard';
 import {popupConfig} from '../utils/constants.js';
 import {validationConfig} from '../utils/constants.js';
 import {Api} from '../components/Api.js';
@@ -15,8 +15,8 @@ const popupRedactorValidate = new FormValidator(validationConfig, popupConfig.po
 popupRedactorValidate.enableValidation();
 const popupAddValidate = new FormValidator(validationConfig, popupConfig.popupAdd);
 popupAddValidate.enableValidation();
-//const popupAvatarValidate = new FormValidator(validationConfig, popupConfig.popupAvatar);
-//popupAvatarValidate.enableValidation();
+const popupAvatarValidate = new FormValidator(validationConfig, popupConfig.popupAvatar);
+popupAvatarValidate.enableValidation();
 const popupImage = new PopupWithImage(popupConfig.popupPhoto);
 let userId = null;
 
@@ -31,14 +31,14 @@ const api = new Api({
 
 
 //загрузка данных пользователя с сервера
-/*api.getUserInfo()
+api.getUserInfo()
     .then((userData) => {
         userId = userData._id;
         userInfo.setUserInfo(userData);
     })
     .catch((err) => {
         console.log(err);
-    });*/
+    });
 
 const userInfo = new UserInfo(
   popupConfig.userName,
@@ -139,10 +139,26 @@ const popupEditAvatar = new PopupWithForm(
 
 popupConfig.openAvatar.addEventListener('click', () => {
   popupEditAvatar.open();
-  //popupAvatarValidate.deleteErrorMessage();
-})
+  popupAvatarValidate.deleteErrorMessage();
+});
+
+const popupDeleteCard = new PopupDeleteCard(
+  popupConfig.popupDelete, {
+    handleFormSubmit: (cardData) => {
+      api.removeCard(cardData.cardId)
+          .then(() => {
+              cardData.card.remove();
+          })
+          .catch((err) => {
+              console.log(err);
+    });
+  }
+});
+
+//popupConfig.btnDelete.addEventListener('click', popupDeleteCard.open());
 
 
+popupDeleteCard.setEventListeners();
 popupEditAvatar.setEventListeners();
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
