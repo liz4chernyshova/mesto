@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {popupConfig} from '../utils/constants.js';
 
 export default class Popup {
@@ -31,4 +32,38 @@ export default class Popup {
 		})
         this._popup.querySelector(popupConfig.buttonClose).addEventListener('click', () => { this.close();})   
     }
+=======
+import {popupConfig} from '../utils/constants.js';
+
+export default class Popup {
+    constructor(popupSelector) {
+        this._popup = document.querySelector(popupSelector);
+        this._handleEscClose = this._handleEscClose.bind(this);
+    }
+
+    open() {
+        this._popup.classList.add('popup_opened');
+        document.addEventListener('keydown', this._handleEscClose);
+    }
+
+    close() {
+        this._popup.classList.remove('popup_opened');
+        document.removeEventListener('keydown', this._handleEscClose);
+    }
+
+    _handleEscClose = (evt) => {
+        if(evt.key === 'Escape') {
+            this.close();
+          }
+    }
+
+    setEventListeners() {
+        this._popup.addEventListener('click', (evt) => {
+			if (evt.target.classList.contains('popup_opened')) {
+				this.close()
+			}
+		})
+        this._popup.querySelector(popupConfig.buttonClose).addEventListener('click', () => { this.close();})   
+    }
+>>>>>>> c0200c81512c5d20b017ee30c9fd1e04eafdcb77
 }
