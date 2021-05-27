@@ -18,7 +18,7 @@ popupAddValidate.enableValidation();
 const popupAvatarValidate = new FormValidator(validationConfig, popupConfig.popupAvatar);
 popupAvatarValidate.enableValidation();
 const popupImage = new PopupWithImage(popupConfig.popupPhoto);
-let userId = null;
+
 
 const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-24',
@@ -33,7 +33,7 @@ const api = new Api({
 //загрузка данных пользователя с сервера
 api.getUserInfo()
     .then((userData) => {
-        userId = userData._id;
+        //userId = userData._id;
         userInfo.setUserInfo(userData);
     })
     .catch((err) => {
@@ -43,15 +43,16 @@ api.getUserInfo()
 const userInfo = new UserInfo(
   popupConfig.userName,
   popupConfig.userDesc,
+  popupConfig.avatar,
 );
 
-const getInfo = () => {
+/*const getInfo = () => {
   const profileInfo = userInfo.getUserInfo();
-  popupConfig.nameInput.value = profileInfo.heading;
-  popupConfig.jobInput.value = profileInfo.subheading;
+  popupConfig.nameInput.value = profileInfo.name;
+  popupConfig.jobInput.value = profileInfo.about;
   popupRedactorValidate.deleteErrorMessage();
   popupEditProfile.open();
-};
+};*/
 
 const popupEditProfile = new PopupWithForm(
   popupConfig.popupRedactor, {
@@ -66,7 +67,12 @@ const popupEditProfile = new PopupWithForm(
   },
 });
 
-popupConfig.btnRedactor.addEventListener('click', getInfo);
+popupConfig.btnRedactor.addEventListener('click', () => {
+  popupConfig.nameInput.value = userInfo.getUserInfo().name;
+  popupConfig.jobInput.value = userInfo.getUserInfo().about;
+  popupEditProfile.open();
+  }
+);
 
 
 
@@ -85,7 +91,6 @@ const cards = new Section((item) =>{
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([userData, initialCards]) => {
-        userId = userData;
         userInfo.setUserInfo(userData.name, userData.about);
         cards.renderItems(initialCards);
     })
@@ -96,13 +101,6 @@ const createCard = (item) => {
   return card.generateCard();
 };
 
-/*api.getInitialCards()
-    .then((item) => {
-        cards.renderItems(item);
-    })
-    .catch((err) => {
-        console.log(err);
-    });*/
   
 
 
