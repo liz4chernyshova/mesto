@@ -15,11 +15,15 @@ const popupConfig = {
     popupAdd: '.popup-add',
     popupRedactor: '.popup-redactor',
     popupPhoto: '.popup-photo',
+    popupAvatar: 'popup-avatar',
+    popupDelete: 'popup-delete',
     btnRedactor: document.querySelector('.profile__redactor-btn'),
+    openAvatar: document.querySelector('.profile__avatar-container'),
     nameInput: popup.querySelector('input[name="heading"]'),
     jobInput: popup.querySelector('input[name="subheading"]'),
     userName: '.profile__info-name',
     userDesc: '.profile__info-description',
     btnAdd: document.querySelector('.profile__submit-btn'),
-    photoElements: '.photo-elements'
+    photoElements: '.photo-elements',
+    btnDelete: 'photo-element__delete-btn'
 }

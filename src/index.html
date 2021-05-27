@@ -12,7 +12,9 @@
         </header>
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" alt="Аватарка." src="<%=require('./images/avatar.jpg')%>">
+              <div class="profile__avatar-container">
+                  <img class="profile__avatar" alt="Аватарка." src="<%=require('./images/avatar.jpg')%>">
+              </div>
                 <div class="profile__info">
                     <div class="profile__redactor">
                         <h1 class="profile__info-name">Жак-Ив Кусто</h1>
@@ -60,12 +62,33 @@
             <h3 class="popup-photo__title"></h3>
           </div>
         </section>
+        <section class="popup popup-avatar">
+          <div class="popup-avatar__container">
+            <button type="button" class="popup__close-btn" value=""><img class="popup__icon" alt="Крестик." src="<%=require('./images/close.svg')%>"></button>
+            <form name="popupAvatar" class="form" novalidate>
+              <h2 class="form__title">Обновить аватар</h2>
+              <input id="url-input" type="url" placeholder="Ссылка на аватар" name="link" class="form__input" required>
+              <span class="link-input-error form__input-error"></span>
+              <button type="submit" class="form__save-btn" disabled>Сохранить</button>
+            </form>
+          </div>
+        </section>
+        <section class="popup popup-delete">
+          <div class="popup-delete__container">
+            <button type="button" class="popup__close-btn" value=""><img class="popup__icon" alt="Крестик." src="<%=require('./images/close.svg')%>"></button>
+            <h2 class="form__title">Вы уверены?</h2>
+            <button type="submit" class="form__save-btn">Да</button>
+          </div>
+        </section>
         <template id="template-element">
           <div class="photo-element">
               <img class="photo-element__picture" alt="#" src="#">
               <div class="photo-element__content">
                   <h2 class="photo-element__title"></h2>
-                  <button type="button" class="photo-element__like" value=""></button>
+                  <div class="photo-element__likes-container">
+                    <button type="button" class="photo-element__like" value=""></button>
+                    <p class="photo-element__quantity"></p>
+                  </div>
               </div>
               <button type="button" class="photo-element__delete-btn" value=""></button>
           </div>
