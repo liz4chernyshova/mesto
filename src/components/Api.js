@@ -89,7 +89,7 @@ export class Api {
     }
 
     popupEditAvatar(link) {
-        return fetch(`${this._url}/users/me/avatar`, {
+        return fetch(`${this._address}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -100,12 +100,12 @@ export class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(`Ошибка: аватан не обновлен ${res.status}`);
+                return Promise.reject(`Ошибка: аватар не обновлен ${res.status}`);
             })
     }
 
     deleteCard(id) {
-        return fetch(`${this._url}/cards/${id}`, {
+        return fetch(`${this._address}/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers
         })

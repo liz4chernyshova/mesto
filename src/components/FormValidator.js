@@ -35,14 +35,14 @@ if (this._hasInvalidInput()) {
 } 
 
 _showError (inputElement, errorMessage) { 
-  const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`); 
+  const errorElement = inputElement.nextElementSibling; 
   inputElement.classList.add(this._validationConfig.inputError); 
   errorElement.textContent = errorMessage; 
   errorElement.classList.add(this._validationConfig.inputErrorActive); 
 }; 
  
 _hideError (inputElement) { 
-  const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`); 
+  const errorElement = inputElement.nextElementSibling; 
   inputElement.classList.remove(this._validationConfig.inputError); 
   errorElement.classList.remove(this._validationConfig.inputErrorActive); 
 };
@@ -50,7 +50,8 @@ _hideError (inputElement) {
   deleteErrorMessage() { 
     this._inputList.forEach((inputElement) => { 
         this._hideError(inputElement); 
-        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`); 
+        //const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+        const errorElement = inputElement.nextElementSibling;  
         errorElement.textContent = ''; 
     }); 
     this._toggleButtonState();  

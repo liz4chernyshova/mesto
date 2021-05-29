@@ -12,6 +12,7 @@ export class Card {
       this._deleteElement = deleteElement;
       this._functionLike = functionLike;
       this._likesQuantity = this._element.querySelector('.photo-element__quantity'),
+      console.log(this._likesQuantity)
       this._elementPicture = '.photo-element__picture',
       this._elementTitle = '.photo-element__title',
       this._elementLike = '.photo-element__like',
@@ -24,14 +25,14 @@ export class Card {
       return newElement;
     }
 
-    deleteLike(cardId) {
-      cardId.querySelector(this._elementLike).classList.remove('.photo-element__like_active');
-      cardId.querySelector(this._likesQuantity).textContent = this._likes.length;
+    deleteLike(cardId, likes) {
+      cardId.querySelector(this._elementLike).classList.remove('photo-element__like_active');
+      cardId.querySelector(this._likesQuantity).textContent = likes.length;
     }
     
-    addLike(cardId) {
+    addLike(cardId, likes) {
       cardId.querySelector(this._elementLike).classList.add('photo-element__like_active');
-      cardId.querySelector(this._likesQuantity).textContent = this._likes.length;
+      cardId.querySelector(this._likesQuantity).textContent = likes.length;
     }
 
     _deleteElement() {
@@ -50,9 +51,9 @@ export class Card {
     
     generateCard() {
       this._setEventListeners();
-      this._element.querySelector(this._elementPicture).src = this._image;
-      this._element.querySelector(this._elementPicture).alt = this._title;
-      this._element.querySelector(this._elementTitle).textContent = this._title;
+      this._element.querySelector(this._elementPicture).src = this._link;
+      this._element.querySelector(this._elementPicture).alt = this._name;
+      this._element.querySelector(this._elementTitle).textContent = this._name;
       this._likesQuantity.textContent = this._likes.length;
       this._element.id = this._idElement;
 

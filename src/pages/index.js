@@ -47,6 +47,7 @@ api.getUserInfo()
 const popupEditProfile = new PopupWithForm(
   popupConfig.popupRedactor, {
     handleFormSubmit: (userData) => {
+      popupEditProfile.renderLoading(true);
       api.setUserInfo(userData.name, userData.about)
         .then(data => {
           userInfo.setUserInfo(data);
@@ -55,6 +56,9 @@ const popupEditProfile = new PopupWithForm(
         .catch((err) => {
           console.log(err);
         })
+        .finally(() => {
+          popupEditProfile.renderLoading(false);
+      });
     }
 });
 
@@ -89,8 +93,8 @@ function createCard(item) {
     openImage: (link, alt) => {
       popupImage.open({link, alt});
     },
-    deleteElement: (cardId) => {
-      popupDeleteCard.open(cardId)
+    deleteElement: (cardItem, cardId) => {
+      popupDeleteCard.open(cardItem, cardId)
     },
     functionLike: (cardId) => {
       if (cardId.querySelector('.photo-element__like').classList.contains('.photo-element__like_active')) {
@@ -116,12 +120,16 @@ function createCard(item) {
 const popupAddCard = new PopupWithForm(
   popupConfig.popupAdd, {
     handleFormSubmit: (data) => {
+    popupAddCard.renderLoading(true);
     api.addCard(data)
       .then(result => {
         cards.addItem(createCard(result));
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        popupAddCard.renderLoading(false);
       })
     popupAddCard.close();
   }
@@ -132,7 +140,7 @@ popupConfig.btnAdd.addEventListener("click", () => {
   popupAddValidate.deleteErrorMessage();
 });
 
-const popupEditAvatar = new PopupWithForm(
+/*const popupEditAvatar = new PopupWithForm(
   popupConfig.popupAvatar, {
   handleFormSubmit: (data) => {
       api.popupEditAvatar(data.avatar)
@@ -144,11 +152,29 @@ const popupEditAvatar = new PopupWithForm(
               console.log(err);
           })
   },
+});*/
+
+const popupAvatar = new PopupWithForm(
+  popupConfig.popupAvatar, {
+  handleFormSubmit: (formData) => {
+      popupAvatar.renderLoading(true);
+      api.popupEditAvatar(formData.avatar)
+          .then((result) => {
+              userInfo.setUserAvatar(result.avatar);
+              popupAvatar.close();
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => {
+              popupAvatar.renderLoading(false);
+          });
+  },
 });
 
 
 popupConfig.openAvatar.addEventListener('click', () => {
-  popupEditAvatar.open();
+  popupAvatar.open();
   popupAvatarValidate.deleteErrorMessage();
 });
 
@@ -171,7 +197,7 @@ const popupDeleteCard = new PopupDeleteCard(
 
 
 popupDeleteCard.setEventListeners();
-popupEditAvatar.setEventListeners();
+popupAvatar.setEventListeners();
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
 popupImage.setEventListeners();
