@@ -91,10 +91,10 @@ function createCard(item) {
   const userId = userInfo.getUserId()
   const element = new Card(item, {
     openImage: (link, alt) => {
-      popupImage.open({link, alt});
+      popupImage.open(link, alt);
     },
-    deleteElement: (cardItem, cardId) => {
-      popupDeleteCard.open(cardItem, cardId)
+    deleteElement: (cardId) => {
+      popupDeleteCard.open(cardId)
     },
     functionLike: (cardId) => {
       if (cardId.querySelector('.photo-element__like').classList.contains('.photo-element__like_active')) {
@@ -140,28 +140,14 @@ popupConfig.btnAdd.addEventListener("click", () => {
   popupAddValidate.deleteErrorMessage();
 });
 
-/*const popupEditAvatar = new PopupWithForm(
-  popupConfig.popupAvatar, {
-  handleFormSubmit: (data) => {
-      api.popupEditAvatar(data.avatar)
-          .then((result) => {
-            userInfo.setUserAvatar(result.avatar);
-            popupEditAvatar.close();
-          })
-          .catch((err) => {
-              console.log(err);
-          })
-  },
-});*/
 
 const popupAvatar = new PopupWithForm(
   popupConfig.popupAvatar, {
   handleFormSubmit: (formData) => {
       popupAvatar.renderLoading(true);
-      api.popupEditAvatar(formData.avatar)
+      api.popupEditAvatar(formData.link)
           .then((result) => {
               userInfo.setUserAvatar(result.avatar);
-              popupAvatar.close();
           })
           .catch((err) => {
               console.log(err);
@@ -169,7 +155,8 @@ const popupAvatar = new PopupWithForm(
           .finally(() => {
               popupAvatar.renderLoading(false);
           });
-  },
+          popupAvatar.close();
+  }
 });
 
 
@@ -181,10 +168,10 @@ popupConfig.openAvatar.addEventListener('click', () => {
 
 const popupDeleteCard = new PopupDeleteCard(
   popupConfig.popupDelete, {
-  handleFormSubmit: () => {
+  handleFormSubmit: (cardId) => {
     api.deleteCard(popupDeleteCard.cardId().id)
       .then(() => {
-        popupDeleteCard.cardId().remove();
+        popupDeleteCard.cardId(cardId).remove();
         popupDeleteCard.close();
       })
       .catch((err) => {

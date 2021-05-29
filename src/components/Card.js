@@ -12,7 +12,6 @@ export class Card {
       this._deleteElement = deleteElement;
       this._functionLike = functionLike;
       this._likesQuantity = this._element.querySelector('.photo-element__quantity'),
-      console.log(this._likesQuantity)
       this._elementPicture = '.photo-element__picture',
       this._elementTitle = '.photo-element__title',
       this._elementLike = '.photo-element__like',
@@ -26,18 +25,20 @@ export class Card {
     }
 
     deleteLike(cardId, likes) {
-      cardId.querySelector(this._elementLike).classList.remove('photo-element__like_active');
-      cardId.querySelector(this._likesQuantity).textContent = likes.length;
+      cardId.querySelector(this._elementLike).classList.remove('.photo-element__like_active');
+      //cardId.querySelector(this._likesQuantity).textContent = likes.length;
+      cardId.querySelector('.photo-element__quantity').textContent = likes.length;
     }
     
     addLike(cardId, likes) {
       cardId.querySelector(this._elementLike).classList.add('photo-element__like_active');
-      cardId.querySelector(this._likesQuantity).textContent = likes.length;
+      //cardId.querySelector(this._likesQuantity).textContent = likes.length;
+      cardId.querySelector('.photo-element__quantity').textContent = likes.length;
     }
 
     _deleteElement() {
         this._deleteElement(this._element);
-      }
+    }
       
     _likeElement() {
         this._functionLike(this._element);
@@ -58,11 +59,11 @@ export class Card {
       this._element.id = this._idElement;
 
       if(this._userId === this._owner) {
-        this._element.querySelector(this._elementDelete).classList.add('.photo-element__delete-btn_active');
+        this._element.querySelector(this._elementDelete).classList.add('photo-element__delete-btn_active');
       }
       this._likes.forEach(like => {
         if(like._id === this._userId) {
-          this._element.querySelector(this._elementLike).classList.add('.photo-element__like_active');
+          this._element.querySelector(this._elementLike).classList.add('photo-element__like_active');
         }
       })
       return this._element;

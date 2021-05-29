@@ -17,7 +17,7 @@ const popupConfig = {
     popupPhoto: '.popup-photo',
     popupAvatar: '.popup-avatar',
     popupDelete: '.popup-delete',
-    avatar: '.profile__avatar',
+    avatar: document.querySelector('.profile__avatar'),
     btnRedactor: document.querySelector('.profile__redactor-btn'),
     openAvatar: document.querySelector('.profile__avatar-container'),
     nameInput: popup.querySelector('input[name="name"]'),

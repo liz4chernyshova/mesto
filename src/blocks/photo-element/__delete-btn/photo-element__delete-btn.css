@@ -10,7 +10,7 @@
     background-color: transparent;
     border: none;
     outline: none;
-    /*visibility: hidden;*/
+    visibility: hidden;
 }
 .photo-element__delete-btn:hover{
     opacity: 0.5;
