@@ -28,13 +28,13 @@ export class Api {
         })
     }
 
-    setUserInfo(formData) {
+    setUserInfo(name, about) {
         return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name: formData.title,
-                about: formData.subtitle
+                name: name,
+                about: about
             })
         })
         .then(res => {
@@ -88,12 +88,12 @@ export class Api {
             })
     }
 
-    popupEditAvatar(formData) {
+    popupEditAvatar(link) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                avatar: formData.avatar
+                avatar: link
             })
         })
             .then(res => {
@@ -104,7 +104,7 @@ export class Api {
             })
     }
 
-    removeCard(id) {
+    deleteCard(id) {
         return fetch(`${this._url}/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers

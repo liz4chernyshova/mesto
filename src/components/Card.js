@@ -1,48 +1,69 @@
 export class Card {
-    constructor(item, openCard, templateSelector, api) {
-        this._templateElement = document.querySelector(templateSelector),
-        this._link = item.link,
-        this._name = item.name,
-        this._openCard = openCard,
-        this._likesId = item.likes;
-        this._myId = item.userId;
-        this._elementDelete = '.photo-element__delete-btn';
-        this._elementLike = '.photo-element__like';
-        this._elementPicture = '.photo-element__picture';
-        this._elementTitle = '.photo-element__title';
-        this._api = api;
+    constructor({name, link, likes, owner, _id}, {openImage, deleteElement, functionLike}, templateSelector, userId) {
+      this._templateElement = document.querySelector(templateSelector);
+      this._element = this._getTemplate();
+      this._link = link;
+      this._name = name;
+      this._openImage = openImage;
+      this._likes = likes;
+      this._idElement = _id;
+      this._owner = owner._id;
+      this._userId = userId;
+      this._deleteElement = deleteElement;
+      this._functionLike = functionLike;
+      this._likesQuantity = this._element.querySelector('.photo-element__quantity'),
+      this._elementPicture = '.photo-element__picture',
+      this._elementTitle = '.photo-element__title',
+      this._elementLike = '.photo-element__like',
+      this._elementDelete = '.photo-element__delete-btn'
     }
 
-    _setEventListeners() {
-        this._element.querySelector(this._elementLike).addEventListener('click', () => this._likeElement());
-        this._element.querySelector(this._elementDelete).addEventListener('click', () => this._deleteElement());
-        this._element.querySelector(this._elementPicture).addEventListener('click', () => this._openCard(this._link, this._name));
-    }
-
+    
     _getTemplate() {
-        const newElement = this._templateElement.content.children[0].cloneNode(true);
-        return newElement;
+      const newElement = this._templateElement.content.children[0].cloneNode(true);
+      return newElement;
     }
 
-    _likes() {
-        return Boolean(this._likesId.find((obj) => obj._id == this._myId));
+    deleteLike(cardId) {
+      cardId.querySelector(this._elementLike).classList.remove('.photo-element__like_active');
+      cardId.querySelector(this._likesQuantity).textContent = this._likes.length;
     }
-
-    _likeElement() {
-       this._element.querySelector(this._elementLike).classList.toggle('photo-element__like_active');
+    
+    addLike(cardId) {
+      cardId.querySelector(this._elementLike).classList.add('photo-element__like_active');
+      cardId.querySelector(this._likesQuantity).textContent = this._likes.length;
     }
 
     _deleteElement() {
-        this._element.closest('.photo-element').remove();
-        this._element = null;
+        this._deleteElement(this._element);
+      }
+      
+    _likeElement() {
+        this._functionLike(this._element);
     }
 
+    _setEventListeners() {
+        this._element.querySelector(this._elementDelete).addEventListener('click', () => this._deleteElement());
+        this._element.querySelector(this._elementLike).addEventListener('click', () => this._likeElement());
+        this._element.querySelector(this._elementPicture).addEventListener('click', () => this._openImage(this._link, this._name));
+    }
+    
     generateCard() {
-        this._element = this._getTemplate();
-        this._setEventListeners();
-        this._element.querySelector(this._elementTitle).textContent = this._name;
-        this._element.querySelector(this._elementPicture).alt = this._name;
-        this._element.querySelector(this._elementPicture).src = this._link;
-        return this._element;
+      this._setEventListeners();
+      this._element.querySelector(this._elementPicture).src = this._image;
+      this._element.querySelector(this._elementPicture).alt = this._title;
+      this._element.querySelector(this._elementTitle).textContent = this._title;
+      this._likesQuantity.textContent = this._likes.length;
+      this._element.id = this._idElement;
+
+      if(this._userId === this._owner) {
+        this._element.querySelector(this._elementDelete).classList.add('.photo-element__delete-btn_active');
+      }
+      this._likes.forEach(like => {
+        if(like._id === this._userId) {
+          this._element.querySelector(this._elementLike).classList.add('.photo-element__like_active');
+        }
+      })
+      return this._element;
     }
 }

@@ -17,14 +17,15 @@ const popupConfig = {
     popupPhoto: '.popup-photo',
     popupAvatar: '.popup-avatar',
     popupDelete: '.popup-delete',
-    avatar: document.querySelector('.profile__avatar'),
+    avatar: '.profile__avatar',
     btnRedactor: document.querySelector('.profile__redactor-btn'),
     openAvatar: document.querySelector('.profile__avatar-container'),
-    nameInput: popup.querySelector('input[name="heading"]'),
-    jobInput: popup.querySelector('input[name="subheading"]'),
+    nameInput: popup.querySelector('input[name="name"]'),
+    jobInput: popup.querySelector('input[name="about"]'),
     userName: '.profile__info-name',
     userDesc: '.profile__info-description',
     btnAdd: document.querySelector('.profile__submit-btn'),
     photoElements: '.photo-elements',
-    btnDelete: '.photo-element__delete-btn'
+    btnDelete: '.photo-element__delete-btn',
+    quantity: '.photo-element__quantity'
 }
