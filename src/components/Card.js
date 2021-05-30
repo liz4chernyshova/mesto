@@ -34,8 +34,12 @@ export class Card {
       cardId.querySelector('.photo-element__quantity').textContent = likes.length;
     }
 
-    _deleteElement() {
-        this._deleteElement(this._element);
+    _deleteThisElement() {
+        this._deleteElement(this._idElement);
+        this._element.closest('.photo-element').remove();
+ 
+        this._element = null;
+
     }
       
     _likeElement() {
@@ -43,7 +47,7 @@ export class Card {
     }
 
     _setEventListeners() {
-        this._element.querySelector(this._elementDelete).addEventListener('click', () => this._deleteElement());
+        this._element.querySelector(this._elementDelete).addEventListener('click', () => this._deleteThisElement());
         this._element.querySelector(this._elementLike).addEventListener('click', () => this._likeElement());
         this._element.querySelector(this._elementPicture).addEventListener('click', () => this._openImage(this._link, this._name));
     }
