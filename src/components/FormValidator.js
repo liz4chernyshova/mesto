@@ -50,7 +50,6 @@ _hideError (inputElement) {
   deleteErrorMessage() { 
     this._inputList.forEach((inputElement) => { 
         this._hideError(inputElement); 
-        //const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
         const errorElement = inputElement.nextElementSibling;  
         errorElement.textContent = ''; 
     }); 

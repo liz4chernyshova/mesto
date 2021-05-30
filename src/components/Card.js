@@ -25,14 +25,12 @@ export class Card {
     }
 
     deleteLike(cardId, likes) {
-      cardId.querySelector(this._elementLike).classList.remove('.photo-element__like_active');
-      //cardId.querySelector(this._likesQuantity).textContent = likes.length;
+      cardId.querySelector(this._elementLike).classList.remove('photo-element__like_active');
       cardId.querySelector('.photo-element__quantity').textContent = likes.length;
     }
     
     addLike(cardId, likes) {
       cardId.querySelector(this._elementLike).classList.add('photo-element__like_active');
-      //cardId.querySelector(this._likesQuantity).textContent = likes.length;
       cardId.querySelector('.photo-element__quantity').textContent = likes.length;
     }
 

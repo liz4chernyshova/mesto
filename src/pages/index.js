@@ -70,6 +70,30 @@ popupConfig.btnRedactor.addEventListener('click', () => {
   }
 );
 
+const popupAvatar = new PopupWithForm(
+  popupConfig.popupAvatar, {
+  handleFormSubmit: (formData) => {
+      popupAvatar.renderLoading(true);
+      api.popupEditAvatar(formData.link)
+          .then((result) => {
+              userInfo.setUserAvatar(result.avatar);
+          })
+          .catch((err) => {
+              console.log(err);
+          })
+          .finally(() => {
+              popupAvatar.renderLoading(false);
+          });
+          popupAvatar.close();
+  }
+});
+
+
+popupConfig.openAvatar.addEventListener('click', () => {
+  popupAvatar.open();
+  popupAvatarValidate.deleteErrorMessage();
+});
+
 
 
 const cards = new Section((item) =>{
@@ -94,11 +118,11 @@ function createCard(item) {
       popupImage.open(link, alt);
     },
     deleteElement: (cardId) => {
-      popupDeleteCard.open(cardId)
+      popupDeleteCard.open(cardId);
     },
     functionLike: (cardId) => {
-      if (cardId.querySelector('.photo-element__like').classList.contains('.photo-element__like_active')) {
-        api.unlikeCard(cardId.id)
+      if (cardId.querySelector('.photo-element__like').classList.contains('photo-element__like_active')) {
+        api.unLikeCard(cardId.id)
           .then(result => element.deleteLike(cardId, result.likes))
           .catch((err) => {
             console.log(err);
@@ -141,37 +165,13 @@ popupConfig.btnAdd.addEventListener("click", () => {
 });
 
 
-const popupAvatar = new PopupWithForm(
-  popupConfig.popupAvatar, {
-  handleFormSubmit: (formData) => {
-      popupAvatar.renderLoading(true);
-      api.popupEditAvatar(formData.link)
-          .then((result) => {
-              userInfo.setUserAvatar(result.avatar);
-          })
-          .catch((err) => {
-              console.log(err);
-          })
-          .finally(() => {
-              popupAvatar.renderLoading(false);
-          });
-          popupAvatar.close();
-  }
-});
-
-
-popupConfig.openAvatar.addEventListener('click', () => {
-  popupAvatar.open();
-  popupAvatarValidate.deleteErrorMessage();
-});
-
 
 const popupDeleteCard = new PopupDeleteCard(
   popupConfig.popupDelete, {
   handleFormSubmit: (cardId) => {
-    api.deleteCard(popupDeleteCard.cardId().id)
+    api.deleteCard(cardId)
       .then(() => {
-        popupDeleteCard.cardId(cardId).remove();
+        popupDeleteCard.cardId().remove();
         popupDeleteCard.close();
       })
       .catch((err) => {
@@ -179,8 +179,6 @@ const popupDeleteCard = new PopupDeleteCard(
       })
   }
 })
-
-//popupConfig.btnDelete.addEventListener('click', popupDeleteCard.open());
 
 
 popupDeleteCard.setEventListeners();
