@@ -33,23 +33,23 @@ export class Card {
       cardId.querySelector(this._elementLike).classList.add('photo-element__like_active');
       cardId.querySelector('.photo-element__quantity').textContent = likes.length;
     }
-
-    _deleteThisElement() {
-        this._deleteElement(this._idElement);
-        this._element.closest('.photo-element').remove();
- 
-        this._element = null;
-
-    }
       
     _likeElement() {
         this._functionLike(this._element);
     }
 
     _setEventListeners() {
-        this._element.querySelector(this._elementDelete).addEventListener('click', () => this._deleteThisElement());
+        this._element.querySelector(this._elementDelete).addEventListener('click', () => this._deleteElement());
         this._element.querySelector(this._elementLike).addEventListener('click', () => this._likeElement());
         this._element.querySelector(this._elementPicture).addEventListener('click', () => this._openImage(this._link, this._name));
+    }
+
+    getId() {
+      return this._idElement;
+    }
+
+    handleRemoveCard() {
+      this._element.closest('.photo-element').remove();
     }
     
     generateCard() {

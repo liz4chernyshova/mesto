@@ -18,6 +18,7 @@ popupAddValidate.enableValidation();
 const popupAvatarValidate = new FormValidator(validationConfig, popupConfig.popupAvatar);
 popupAvatarValidate.enableValidation();
 const popupImage = new PopupWithImage(popupConfig.popupPhoto);
+const popupDeleteCard = new PopupDeleteCard(popupConfig.popupDelete);
 
 
 const api = new Api({
@@ -117,8 +118,17 @@ function createCard(item) {
     openImage: (link, alt) => {
       popupImage.open(link, alt);
     },
-    deleteElement: (cardId) => {
-      popupDeleteCard.open(cardId);
+    deleteElement: () => {
+      popupDeleteCard.open(() => {
+       api.deleteCard(element.getId())
+        .then(() => {
+          element.handleRemoveCard()
+          popupDeleteCard.close();
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+      });
     },
     functionLike: (cardId) => {
       if (cardId.querySelector('.photo-element__like').classList.contains('photo-element__like_active')) {
@@ -163,22 +173,6 @@ popupConfig.btnAdd.addEventListener("click", () => {
   popupAddCard.open();
   popupAddValidate.deleteErrorMessage();
 });
-
-
-
-const popupDeleteCard = new PopupDeleteCard(
-  popupConfig.popupDelete, {
-  handleFormSubmit: (cardId) => {
-    api.deleteCard(cardId)
-      .then(() => {
-        popupDeleteCard.cardId().remove();
-        popupDeleteCard.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-})
 
 
 popupDeleteCard.setEventListeners();
