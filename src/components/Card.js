@@ -24,14 +24,14 @@ export class Card {
       return newElement;
     }
 
-    deleteLike(cardId, likes) {
-      cardId.querySelector(this._elementLike).classList.remove('photo-element__like_active');
-      cardId.querySelector('.photo-element__quantity').textContent = likes.length;
+    deleteLike(cardElement, likes) {
+      cardElement.querySelector(this._elementLike).classList.remove('photo-element__like_active');
+      cardElement.querySelector('.photo-element__quantity').textContent = likes.length;
     }
     
-    addLike(cardId, likes) {
-      cardId.querySelector(this._elementLike).classList.add('photo-element__like_active');
-      cardId.querySelector('.photo-element__quantity').textContent = likes.length;
+    addLike(cardElement, likes) {
+      cardElement.querySelector(this._elementLike).classList.add('photo-element__like_active');
+      cardElement.querySelector('.photo-element__quantity').textContent = likes.length;
     }
       
     _likeElement() {

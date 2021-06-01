@@ -8,24 +8,14 @@ export class Api {
         return fetch(`${this._address}/users/me`, {
             headers: this._headers
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: данные пользователя не получены ${res.status}`);
-        })
+        .then(this._checkResponse)
     }
 
     getInitialCards() {
         return fetch(`${this._address}/cards`, {
             headers: this._headers
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: карточки не загружены ${res.status}`);
-        })
+        .then(this._checkResponse)
     }
 
     setUserInfo(name, about) {
@@ -37,12 +27,7 @@ export class Api {
                 about: about
             })
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: данные не обновлены ${res.status}`);
-        })
+        .then(this._checkResponse)
     }
 
     addCard(cardData) {
@@ -54,12 +39,7 @@ export class Api {
                 link: cardData.link
             })
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: данные не обновлены ${res.status}`);
-        })
+        .then(this._checkResponse)
     }
 
     likeCard(id) {
@@ -67,12 +47,7 @@ export class Api {
             method: 'PUT',
             headers: this._headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: лайк не установслен ${res.status}`);
-            })
+        .then(this._checkResponse)
     }
 
     unLikeCard(id) {
@@ -80,12 +55,7 @@ export class Api {
             method: 'DELETE',
             headers: this._headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: лайк не снят${res.status}`);
-            })
+        .then(this._checkResponse)
     }
 
     popupEditAvatar(link) {
@@ -96,12 +66,7 @@ export class Api {
                 avatar: link
             })
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: аватар не обновлен ${res.status}`);
-            })
+        .then(this._checkResponse)
     }
 
     deleteCard(id) {
@@ -109,13 +74,14 @@ export class Api {
             method: 'DELETE',
             headers: this._headers
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: карточка не удалена ${res.status}`);
-            })
+        .then(this._checkResponse)
     }
   
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+    }
     
 }

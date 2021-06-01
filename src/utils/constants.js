@@ -1,4 +1,4 @@
-export { validationConfig, popupConfig };
+export { validationConfig, popupConfig, cardConfig };
 
 const validationConfig = {
     formSelector: '.form',
@@ -17,7 +17,7 @@ const popupConfig = {
     popupPhoto: '.popup-photo',
     popupAvatar: '.popup-avatar',
     popupDelete: '.popup-delete',
-    avatar: document.querySelector('.profile__avatar'),
+    avatar: '.profile__avatar',
     btnRedactor: document.querySelector('.profile__redactor-btn'),
     openAvatar: document.querySelector('.profile__avatar-container'),
     nameInput: popup.querySelector('input[name="name"]'),
@@ -28,4 +28,9 @@ const popupConfig = {
     photoElements: '.photo-elements',
     btnDelete: '.photo-element__delete-btn',
     quantity: '.photo-element__quantity'
+}
+
+const cardConfig = {
+    elementLike: '.photo-element__like',
+    elementLikeActive: 'photo-element__like_active'
 }

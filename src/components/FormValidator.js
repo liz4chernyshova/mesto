@@ -47,23 +47,22 @@ _hideError (inputElement) {
   errorElement.classList.remove(this._validationConfig.inputErrorActive); 
 };
 
-  deleteErrorMessage() { 
+resetValidation() { 
     this._inputList.forEach((inputElement) => { 
         this._hideError(inputElement); 
         const errorElement = inputElement.nextElementSibling;  
-        errorElement.textContent = ''; 
     }); 
     this._toggleButtonState();  
   } 
   
 
-  _isValid (inputElement) { 
-    if (!inputElement.validity.valid) { 
-      this._showError(inputElement, inputElement.validationMessage ); 
-    } else { 
-      this._hideError(inputElement); 
-    } 
-  }; 
+_isValid (inputElement) { 
+  if (!inputElement.validity.valid) { 
+    this._showError(inputElement, inputElement.validationMessage ); 
+  } else { 
+    this._hideError(inputElement); 
+  } 
+}; 
   
   
   enableValidation () { 

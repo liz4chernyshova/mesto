@@ -5,9 +5,8 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-import PopupDeleteCard from '../components/popupDeleteCard';
-import {popupConfig} from '../utils/constants.js';
-import {validationConfig} from '../utils/constants.js';
+import PopupDeleteCard from '../components/PopupDeleteCard';
+import {popupConfig, validationConfig, cardConfig} from '../utils/constants.js';
 import {Api} from '../components/Api.js';
 
 
@@ -29,6 +28,15 @@ const api = new Api({
   }
 })
 
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, card]) => {
+    userInfo.setUserInfo(userData);
+    cards.renderItems(card);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 
 const userInfo = new UserInfo(
   popupConfig.userName,
@@ -36,13 +44,7 @@ const userInfo = new UserInfo(
   popupConfig.avatar
 );
 
-api.getUserInfo()
-    .then((userData) => {
-        userInfo.setUserInfo(userData);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+console.log(popupConfig.avatar)
 
 
 const popupEditProfile = new PopupWithForm(
@@ -66,7 +68,7 @@ const popupEditProfile = new PopupWithForm(
 popupConfig.btnRedactor.addEventListener('click', () => {
   popupConfig.nameInput.value = userInfo.getUserInfo().name;
   popupConfig.jobInput.value = userInfo.getUserInfo().about;
-  popupRedactorValidate.enableValidation();
+  popupRedactorValidate.resetValidation();
   popupEditProfile.open();
   }
 );
@@ -77,7 +79,8 @@ const popupAvatar = new PopupWithForm(
       popupAvatar.renderLoading(true);
       api.popupEditAvatar(formData.link)
           .then((result) => {
-              userInfo.setUserAvatar(result.avatar);
+              userInfo.setUserInfo(result);
+              popupAvatar.close();
           })
           .catch((err) => {
               console.log(err);
@@ -85,14 +88,13 @@ const popupAvatar = new PopupWithForm(
           .finally(() => {
               popupAvatar.renderLoading(false);
           });
-          popupAvatar.close();
   }
 });
 
 
 popupConfig.openAvatar.addEventListener('click', () => {
   popupAvatar.open();
-  popupAvatarValidate.deleteErrorMessage();
+  popupAvatarValidate.resetValidation();
 });
 
 
@@ -103,14 +105,6 @@ const cards = new Section((item) =>{
 }, 
 popupConfig.photoElements);
 
-
-api.getInitialCards()
-    .then((card) => {
-        cards.renderItems(card);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
 
 function createCard(item) {
   const userId = userInfo.getUserId()
@@ -130,16 +124,16 @@ function createCard(item) {
         })
       });
     },
-    functionLike: (cardId) => {
-      if (cardId.querySelector('.photo-element__like').classList.contains('photo-element__like_active')) {
-        api.unLikeCard(cardId.id)
-          .then(result => element.deleteLike(cardId, result.likes))
+    functionLike: (cardElement) => {
+      if (cardElement.querySelector(cardConfig.elementLike).classList.contains(cardConfig.elementLikeActive)) {
+        api.unLikeCard(cardElement.id)
+          .then(result => element.deleteLike(cardElement, result.likes))
           .catch((err) => {
             console.log(err);
         });
       } else {
-        api.likeCard(cardId.id)
-          .then(result => element.addLike(cardId, result.likes))
+        api.likeCard(cardElement.id)
+          .then(result => element.addLike(cardElement, result.likes))
           .catch((err) => {
             console.log(err);
         });
@@ -158,6 +152,7 @@ const popupAddCard = new PopupWithForm(
     api.addCard(data)
       .then(result => {
         cards.addItem(createCard(result));
+        popupAddCard.close();
       })
       .catch((err) => {
         console.log(err);
@@ -165,13 +160,12 @@ const popupAddCard = new PopupWithForm(
       .finally(() => {
         popupAddCard.renderLoading(false);
       })
-    popupAddCard.close();
   }
 });
 
 popupConfig.btnAdd.addEventListener("click", () => {
   popupAddCard.open();
-  popupAddValidate.deleteErrorMessage();
+  popupAddValidate.resetValidation();
 });
 
 

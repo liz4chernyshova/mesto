@@ -16,9 +16,9 @@ export default class PopupWithForm extends Popup {
         return this._inputValues;
     }
 
-    renderLoading(isLoading) {
+    renderLoading(isLoading, loadingText = 'Сохранение...') {
         if (isLoading) {
-            this._btnElement.textContent = 'Сохранение...';
+            this._btnElement.textContent = loadingText;
         } else {
             this._btnElement.textContent = this._loadSubmit;
         }
